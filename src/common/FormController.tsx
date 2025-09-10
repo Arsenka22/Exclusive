@@ -1,11 +1,8 @@
 import { useState, type FormEvent, type ChangeEvent } from "react";
 import { FormView } from "./FormView";
-import { Form } from "react-router-dom";
 
 export const FormController = () => {
   const [FormData, setFormData] = useState({username: '', email: '', tel: '', message: ''})
-  const [submitted, setSubmitted] = useState(false);
- 
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     const key =  e.currentTarget.name;

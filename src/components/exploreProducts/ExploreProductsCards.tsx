@@ -1,5 +1,5 @@
 import { products } from "../../data/products";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 
 // Добавляем пропс для управления состоянием showAll
 interface ExploreProductCardsProps {
@@ -10,8 +10,6 @@ interface ExploreProductCardsProps {
 
 export const ExploreOurProductsCards = ({
   showAll = false,
-  onShowAll,
-  onShowLess,
 }: ExploreProductCardsProps) => {
 
   const renderRatingStars = (rating: number) => {

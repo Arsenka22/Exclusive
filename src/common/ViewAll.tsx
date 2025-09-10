@@ -4,6 +4,7 @@ import { bestSellingProducts } from "../data/bestSellingProducts";
 export const ViewAll = () => {
   const[showAll, setShowAll] = useState(4);
 
+
   const handleShowAll = () => {
     setShowAll(bestSellingProducts.length)
   }

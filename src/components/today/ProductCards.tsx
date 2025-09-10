@@ -1,5 +1,5 @@
 import { products } from "../../data/products";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 interface ProductCardsProps {
   showAll?: boolean;
@@ -9,12 +9,9 @@ interface ProductCardsProps {
 
 export const ProductCards = ({
   showAll = false,
-  handleShowAll,
-  handleShowLess,
 }: ProductCardsProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(1);
-  const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (showAll) return;
@@ -54,9 +51,6 @@ export const ProductCards = ({
     }
   };
 
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index * itemsPerView);
-  };
 
   const renderRatingStars = (rating: number) => {
     const stars = [];

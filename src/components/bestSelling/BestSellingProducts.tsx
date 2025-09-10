@@ -1,5 +1,5 @@
 import { bestSellingProducts as products } from "../../data/bestSellingProducts";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // Добавляем пропс для управления состоянием showAll
 interface BestSellingProductCardsProps {
@@ -10,13 +10,10 @@ interface BestSellingProductCardsProps {
 
 export const BestSellingProductCards = ({
   showAll = false,
-  onShowAll,
-  onShowLess,
+
 }: BestSellingProductCardsProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(1);
-  const carouselRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (showAll) return; // Не обновляем itemsPerView когда показаны все карточки
 

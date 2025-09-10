@@ -1,8 +1,6 @@
 import { SpeakerTimer } from "./SpeakerTimer";
 import { BuyNowBtn } from "../../common/BuyNowBtn";
 import speaker from "../../assets/speaker.png";
-import elipse from "../../assets/Ellipse.png";
-
 export const SpeakerAd = () => {
   return (
     <div className="max-w-[1440px] w-full h-[500px] flex  items-start justify-start z-1 bg-black py-[69px] px-[60px]  ">

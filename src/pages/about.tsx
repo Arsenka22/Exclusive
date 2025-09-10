@@ -2,8 +2,6 @@ import { HeaderView } from "../components/Header/HeaderView";
 import { SaleNotification } from "../components/SaleNotification";
 import { FooterView } from "../components/footer/FooterView";
 import storyphoto from "../assets/pstoryphoto.png";
-import sallers from "../assets/Icon-Sale.png";
-import sellerEl from "../assets/sellersEl.png";
 import { useState } from "react";
 import { achievementsCards } from "../data/achievementsCards";
 import { PersonalitiesCards } from "../components/persCards/PersonalitiesCards";
