@@ -118,7 +118,7 @@ export const ProductCards = ({
     const [isHovered, setIsHovered] = useState(false);
     const [isToCartClicked, setIsToCartClicked] = useState(false);
 
-    const handleToCartClick = (index: number) => {
+    const handleToCartClick = () => {
       setIsToCartClicked(true);
       setTimeout(() => {
         setIsToCartClicked(false);
@@ -154,7 +154,7 @@ export const ProductCards = ({
           <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 bg-white">
             <button
               className="bg-black w-full text-white px-2 py-1 sm:px-3 sm:py-2 rounded text-sm sm:text-base"
-              onClick={() => handleToCartClick(product.id)}
+              onClick={handleToCartClick}
             >
               Add to cart
             </button>

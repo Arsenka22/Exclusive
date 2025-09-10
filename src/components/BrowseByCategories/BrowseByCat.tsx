@@ -1,5 +1,4 @@
 import { CategoryCards } from "./CategoryCards";
-import { Categories } from "../../data/categories";
 export const BrowseByCategories = () => {
   return (
     <div className="w-full h-full flex flex-col gap-5 justify-start items-start">
@@ -18,7 +17,7 @@ export const BrowseByCategories = () => {
           </button>
         </div>
       </div>
-      <CategoryCards category={Categories[0]}/>
+      <CategoryCards />
     </div>
   );
 };

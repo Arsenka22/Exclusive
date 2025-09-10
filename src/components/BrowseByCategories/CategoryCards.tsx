@@ -1,11 +1,7 @@
 import { Categories } from "../../data/categories";
 import { useState } from "react";
 
-export const CategoryCards = ({
-  category,
-}: {
-  category: (typeof Categories)[0];
-}) => {
+export const CategoryCards = () => {
   const [active, setActive] = useState<string>("home");
 
   return (
