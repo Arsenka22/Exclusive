@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useWishlist } from "../../contexts/wishlistContext";
 import { products } from "../../data/products";
 
@@ -11,14 +11,10 @@ interface ProductCardsProps {
 
 export const ProductCards = ({
   showAll = false,
-  handleShowAll,
-  handleShowLess,
 }: ProductCardsProps) => {
   const { addToWishlist, removeFromWishlist, isInWishlist: checkIsInWishlist } = useWishlist();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(1);
-  const carouselRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (showAll) return;
     const updateItemsPerView = () => {
@@ -55,10 +51,6 @@ export const ProductCards = ({
     } else {
       setCurrentIndex((prev) => prev - 1);
     }
-  };
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index * itemsPerView);
   };
 
   const renderRatingStars = (rating: number) => {
