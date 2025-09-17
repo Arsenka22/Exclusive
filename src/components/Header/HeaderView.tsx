@@ -86,9 +86,11 @@ export const HeaderView = () => {
           className="bg-[#F1F1F1] px-4 py-2 lg:px-[20px] lg:py-[7px] cursor-pointer w-full lg:w-auto rounded-lg"
         />
         <div className="flex justify-center gap-4 lg:gap-6">
+          <Link to ="/wishlist" onClick={HandleOnclick}>
           <button className="cursor-pointer p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <img src={WishList} alt="WishList" className="w-6 h-6 lg:w-auto lg:h-auto" />
           </button>
+          </Link>
           <button className="cursor-pointer p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <img src={Cart} alt="Cart" className="w-6 h-6 lg:w-auto lg:h-auto" />
           </button>
