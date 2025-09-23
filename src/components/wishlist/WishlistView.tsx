@@ -90,7 +90,7 @@ export const Wishlist = () => {
             Save your favorite items here to easily find them later.
           </p>
           <Link
-            to="/products"
+            to="/"
             className="inline-block bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-200"
           >
             Browse Products
@@ -112,7 +112,7 @@ export const Wishlist = () => {
             </p>
           </div>
           <Link
-            to="/products"
+            to="/"
             className="text-blue-600 hover:text-blue-800 font-medium"
           >
             Continue Shopping
@@ -192,13 +192,13 @@ export const Wishlist = () => {
 
         {wishlist.length > 0 && (
           <div className="mt-8 text-center">
-            <button
+            <button 
               onClick={() => {
                 if (window.confirm('Are you sure you want to clear your entire wishlist?')) {
                   wishlist.forEach(product => removeFromWishlist(product.id));
                 }
               }}
-              className="text-red-600 hover:text-red-800 font-medium"
+              className="bg-red-600 text-white py-2 px-4 rounded "
             >
               Clear All Items
             </button>

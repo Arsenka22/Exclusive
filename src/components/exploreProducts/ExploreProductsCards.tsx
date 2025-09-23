@@ -3,7 +3,6 @@ import { useWishlist } from "../../contexts/wishlistContext";
 import { products } from "../../data/products";
 import { useCart } from "../../contexts/cartContext";
 
-
 interface ExploreOurProductsProps {
   showAll?: boolean;
   handleShowAll?: () => void;
@@ -14,7 +13,11 @@ export const ExploreOurProductsCards = ({
   showAll = false,
 }: ExploreOurProductsProps) => {
   const { addToCart } = useCart();
-  const { addToWishlist, removeFromWishlist, isInWishlist: checkIsInWishlist } = useWishlist();
+  const {
+    addToWishlist,
+    removeFromWishlist,
+    isInWishlist: checkIsInWishlist,
+  } = useWishlist();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(1);
   useEffect(() => {
@@ -112,16 +115,18 @@ export const ExploreOurProductsCards = ({
     return (
       <div className="flex items-center">
         {stars}
-        <span className="ml-1 text-xs sm:text-sm text-gray-600">({rating})</span>
+        <span className="ml-1 text-xs sm:text-sm text-gray-600">
+          ({rating})
+        </span>
       </div>
     );
   };
 
-  const ProductCard =  ({ product }: { product: (typeof products)[0] }) => {
+  const ProductCard = ({ product }: { product: (typeof products)[0] }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isToCartClicked] = useState(false);
     const [isToWishlistClicked, setIsToWishlistClicked] = useState(false);
-    
+
     const isInWishlist = checkIsInWishlist(product.id);
 
     const handleWishlistClick = () => {
@@ -177,7 +182,7 @@ export const ExploreOurProductsCards = ({
           alt={product.title}
           className="w-full h-40 sm:h-48 object-cover transition-transform duration-300"
         />
-        
+
         <div className="product-info flex flex-col gap-1 sm:gap-2 items-start p-2 sm:p-3">
           <h3 className="text-sm sm:text-[16px] text-black font-bold line-clamp-2">
             {product.title}
@@ -192,14 +197,14 @@ export const ExploreOurProductsCards = ({
           <div className="absolute flex flex-col gap-2 bottom-0 left-0 right-0 p-2 sm:p-3 bg-white">
             <button
               className="bg-black flex items-center justify-center w-full h-[30px] text-white px-2 py-1 sm:px-3 sm:py-2 rounded text-sm sm:text-base hover:bg-gray-800 transition-colors"
-              onClick={() => addToCart({...product, quantity: 1})}
+              onClick={() => addToCart({ ...product, quantity: 1 })}
             >
               Add to cart
             </button>
-            <button 
+            <button
               className={`flex items-center justify-center w-full h-[30px] px-2 sm:px-3 sm:py-2 rounded text-sm sm:text-base transition-colors ${
-                isInWishlist 
-                  ? "bg-red-500 text-white hover:bg-red-600" 
+                isInWishlist
+                  ? "bg-red-500 text-white hover:bg-red-600"
                   : "bg-gray-200 text-black hover:bg-gray-300"
               }`}
               onClick={handleWishlistClick}
@@ -208,13 +213,13 @@ export const ExploreOurProductsCards = ({
             </button>
           </div>
         )}
-        
+
         {isToCartClicked && (
           <div className="absolute top-10 left-2 sm:top-12 sm:left-3 bg-green-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-md text-xs sm:text-sm z-20">
             Added to cart
           </div>
         )}
-        
+
         {isToWishlistClicked && (
           <div className="absolute top-10 left-2 sm:top-12 sm:left-3 bg-blue-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-md text-xs sm:text-sm z-20">
             {isInWishlist ? "Added to wishlist" : "Removed from wishlist"}

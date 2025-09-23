@@ -8,6 +8,7 @@ import { CartPage } from "./pages/cartpage";
 import { SignupPage } from "./pages/signup";
 import { LoginPage } from "./pages/login";
 import { CartContextProvider } from "./contexts/cartContext";
+import { ActivationPage } from "./pages/ActivationPage";
 export const App = () => {
   return (
     <CartContextProvider>
@@ -21,6 +22,7 @@ export const App = () => {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/cart" element={<CartPage />} />
+      <Route path="/activation/" element={<ActivationPage />} />
    </Routes>
     </BrowserRouter>
     </WishlistProvider>

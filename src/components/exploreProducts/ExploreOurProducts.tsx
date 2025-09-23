@@ -26,8 +26,8 @@ export const ExploreOurProducts = () => {
       <div className="max-w-[1170px] w-full h-full flex flex-wrap gap-[30px] justify-between items-center">
         <ExploreOurProductsCards
           showAll={showAll}
-          onShowAll={handleShowAll}
-          onShowLess={handleShowLess}
+          handleShowAll={handleShowAll}
+          handleShowLess={handleShowLess}
         />
       </div>
       <div className="w-full mt-[76px] flex justify-center  bnt-container flex gap-4">

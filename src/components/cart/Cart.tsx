@@ -40,9 +40,14 @@ export const Cart = () => {
     );
   }
 
+  // Calculate totals
+  const subtotal = cart.reduce((total, product) => total + (product.price * product.quantity), 0);
+  const shipping = subtotal > 100 ? 0 : 10; // Free shipping over $100
+  const total = subtotal + shipping;
+
   return (
     <div className="min-h-screen py-8">
-      <div className="container mx-auto ">
+      <div className="container mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
@@ -53,8 +58,8 @@ export const Cart = () => {
             </p>
           </div>
           <Link
-            to="/products"
-            className="text-blue-600 hover:text-blue-800 font-medium"
+            to="/"
+            className="bg-transparent flex items-center gap-2 h-[50px] border-2 border-gray-900 text-black px-4 py-2 rounded hover:bg-gray-900 hover:text-white transition-colors duration-200"
           >
             Continue Shopping
           </Link>
@@ -79,7 +84,7 @@ export const Cart = () => {
               <div className="flex items-center gap-4 relative">
                 <img
                   src={product.image}
-                  className="w-[54px] h-[54px] object-cover"
+                  className="w-[54px] h-[54px] object-fit"
                 />
                 <h3 className="font-semibold text-gray-900 line-clamp-2">
                   {product.title}
@@ -106,7 +111,7 @@ export const Cart = () => {
 
               {/* Price */}
               <div className="font-semibold text-gray-900">
-                ${product.price}
+                ${product.price.toFixed(2)}
               </div>
 
               {/* Quantity */}
@@ -124,7 +129,7 @@ export const Cart = () => {
 
               {/* Subtotal */}
               <div className="font-semibold text-gray-900">
-                ${product.price * product.quantity}
+                ${(product.price * product.quantity).toFixed(2)}
               </div>
             </div>
           ))}
@@ -143,12 +148,44 @@ export const Cart = () => {
                   cart.forEach((product) => removeFromCart(product.id));
                 }
               }}
-              className="text-red-600 hover:text-red-800 font-medium"
+              className="bg-red-600 h-[50px] text-white px-4 py-2 rounded hover:bg-red-700 transition-colors duration-200"
             >
               Clear All Items
             </button>
           </div>
         )}
+
+        {/* Cart Total Block */}
+        <div className="mt-12 max-w-md ml-auto">
+          <div className="bg-transparent border border-black rounded-lg p-6">
+            <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
+              Cart Total
+            </h3>
+            
+            <div className="space-y-4">
+              <div className="flex justify-between items-center pb-4 border-b border-gray-300">
+                <span className="font-medium text-gray-700">SubTotal</span>
+                <span className="font-semibold text-gray-900">${subtotal.toFixed(2)}</span>
+              </div>
+              
+              <div className="flex justify-between items-center pb-4 border-b border-gray-300">
+                <span className="font-medium text-gray-700">Shipping</span>
+                <span className="font-semibold text-gray-900">
+                  {shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}
+                </span>
+              </div>
+              
+              <div className="flex justify-between items-center pb-4">
+                <span className="font-bold text-gray-900 text-lg">Total</span>
+                <span className="font-bold text-gray-900 text-lg">${total.toFixed(2)}</span>
+              </div>
+            </div>
+            
+            <button className="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors duration-200 font-semibold mt-6">
+              Proceed to Checkout
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
