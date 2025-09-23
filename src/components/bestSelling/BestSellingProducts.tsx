@@ -1,28 +1,29 @@
-import { bestSellingProducts as products } from "../../data/bestSellingProducts";
 import { useState, useEffect } from "react";
+import { useWishlist } from "../../contexts/wishlistContext";
+import { products } from "../../data/products";
+import { useCart } from "../../contexts/cartContext";
 
-// Добавляем пропс для управления состоянием showAll
-interface BestSellingProductCardsProps {
+interface BestSellingCardsProps {
   showAll?: boolean;
-  onShowAll?: () => void;
-  onShowLess?: () => void;
+  handleShowAll?: () => void;
+  handleShowLess?: () => void;
 }
 
 export const BestSellingProductCards = ({
   showAll = false,
-
-}: BestSellingProductCardsProps) => {
+}: BestSellingCardsProps) => {
+  const { addToCart } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist: checkIsInWishlist } = useWishlist();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(1);
   useEffect(() => {
-    if (showAll) return; // Не обновляем itemsPerView когда показаны все карточки
-
+    if (showAll) return;
     const updateItemsPerView = () => {
-      if (window.innerWidth >= 1024) {
+      if (window.innerWidth >= 1280) {
         setItemsPerView(4);
-      } else if (window.innerWidth >= 768) {
+      } else if (window.innerWidth >= 1024) {
         setItemsPerView(3);
-      } else if (window.innerWidth >= 640) {
+      } else if (window.innerWidth >= 768) {
         setItemsPerView(2);
       } else {
         setItemsPerView(1);
@@ -62,7 +63,7 @@ export const BestSellingProductCards = ({
       stars.push(
         <svg
           key={`full-${i}`}
-          className="w-4 h-4 text-yellow-400"
+          className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400"
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -75,7 +76,7 @@ export const BestSellingProductCards = ({
       stars.push(
         <svg
           key="half"
-          className="w-4 h-4 text-yellow-400"
+          className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400"
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -98,7 +99,7 @@ export const BestSellingProductCards = ({
       stars.push(
         <svg
           key={`empty-${i}`}
-          className="w-4 h-4 text-gray-300"
+          className="w-3 h-3 sm:w-4 sm:h-4 text-gray-300"
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -110,44 +111,112 @@ export const BestSellingProductCards = ({
     return (
       <div className="flex items-center">
         {stars}
-        <span className="ml-1 text-sm text-gray-600">({rating})</span>
+        <span className="ml-1 text-xs sm:text-sm text-gray-600">({rating})</span>
       </div>
     );
   };
 
-  const ProductCard = ({ product }: { product: (typeof products)[0] }) => {
+  const ProductCard =  ({ product }: { product: (typeof products)[0] }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const [isToCartClicked] = useState(false);
+    const [isToWishlistClicked, setIsToWishlistClicked] = useState(false);
+    
+    const isInWishlist = checkIsInWishlist(product.id);
+
+    const handleWishlistClick = () => {
+      if (isInWishlist) {
+        removeFromWishlist(product.id);
+        setIsToWishlistClicked(true);
+        setTimeout(() => {
+          setIsToWishlistClicked(false);
+        }, 2000);
+      } else {
+        addToWishlist(product);
+        setIsToWishlistClicked(true);
+        setTimeout(() => {
+          setIsToWishlistClicked(false);
+        }, 2000);
+      }
+    };
 
     return (
       <div
-        className={`product-card w-full max-w-[270px] h-[350px] relative  ${
+        className={`product-card w-full max-w-[270px] mx-auto h-[300px] sm:h-[350px] relative ${
           isHovered
             ? "shadow-lg border-blue-400 transform scale-105"
             : "shadow-md"
-        }`}
+        } transition-all duration-300`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
+        <button
+          onClick={handleWishlistClick}
+          className="absolute top-2 right-2 z-10 p-1 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors"
+          aria-label={isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
+        >
+          <svg
+            className={`w-4 h-4 sm:w-5 sm:h-5 ${
+              isInWishlist ? "text-red-500 fill-current" : "text-gray-400"
+            }`}
+            fill={isInWishlist ? "currentColor" : "none"}
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            />
+          </svg>
+        </button>
+
         <img
           src={product.image}
           alt={product.title}
-          className="w-full h-48 object-cover transition-transform duration-300 "
+          className="w-full h-40 sm:h-48 object-cover transition-transform duration-300"
         />
-        <div className="product-info flex flex-col gap-2 items-start p-3">
-          <h3 className="text-[16px] font-bold line-clamp-2">
+        
+        <div className="product-info flex flex-col gap-1 sm:gap-2 items-start p-2 sm:p-3">
+          <h3 className="text-sm sm:text-[16px] text-black font-bold line-clamp-2">
             {product.title}
           </h3>
-          <p className="text-[16px] font-medium text-red-500">
+          <p className="text-sm sm:text-[16px] font-medium text-red-500">
             ${product.price}
           </p>
           {renderRatingStars(product.rate)}
         </div>
 
         {isHovered && (
-          <div className="absolute bottom-0 left-0 right-0 p-3 bg-white ">
-            <button className="bg-black w-full text-white px-3 py-2 rounded ">
+          <div className="absolute flex flex-col gap-2 bottom-0 left-0 right-0 p-2 sm:p-3 bg-white">
+            <button
+              className="bg-black flex items-center justify-center w-full h-[30px] text-white px-2 py-1 sm:px-3 sm:py-2 rounded text-sm sm:text-base hover:bg-gray-800 transition-colors"
+              onClick={() => addToCart({...product, quantity: 1})}
+            >
               Add to cart
             </button>
+            <button 
+              className={`flex items-center justify-center w-full h-[30px] px-2 sm:px-3 sm:py-2 rounded text-sm sm:text-base transition-colors ${
+                isInWishlist 
+                  ? "bg-red-500 text-white hover:bg-red-600" 
+                  : "bg-gray-200 text-black hover:bg-gray-300"
+              }`}
+              onClick={handleWishlistClick}
+            >
+              {isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
+            </button>
+          </div>
+        )}
+        
+        {isToCartClicked && (
+          <div className="absolute top-10 left-2 sm:top-12 sm:left-3 bg-green-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-md text-xs sm:text-sm z-20">
+            Added to cart
+          </div>
+        )}
+        
+        {isToWishlistClicked && (
+          <div className="absolute top-10 left-2 sm:top-12 sm:left-3 bg-blue-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-md text-xs sm:text-sm z-20">
+            {isInWishlist ? "Added to wishlist" : "Removed from wishlist"}
           </div>
         )}
       </div>
@@ -156,35 +225,36 @@ export const BestSellingProductCards = ({
 
   const getVisibleProducts = () => {
     if (showAll) {
-      return products; // Возвращаем все продукты
+      return products;
     }
-
     const visibleProducts = [];
+
     for (let i = 0; i < itemsPerView; i++) {
       const productIndex = (currentIndex + i) % products.length;
       visibleProducts.push(products[productIndex]);
     }
+
     return visibleProducts;
   };
 
   const visibleProducts = getVisibleProducts();
 
   return (
-    <div className="product-carousel mt-10 px-4 relative">
+    <div className="product-carousel mt-6 sm:mt-10 px-2 sm:px-4 relative">
       <div className="relative overflow-hidden">
         <div
           className={`flex ${
             showAll
-              ? "flex-wrap justify-center gap-4"
-              : "justify-center space-x-4"
+              ? "flex-wrap justify-center gap-3 sm:gap-4"
+              : "justify-center space-x-2 sm:space-x-4"
           }`}
         >
           {visibleProducts.map((product) => (
             <div
               key={product.id}
-              className={`${
-                showAll ? "flex-shrink-0 mb-4" : "flex-shrink-0"
-              } w-64 transition-all duration-300`}
+              className={`flex-shrink-0 ${
+                showAll ? "w-full sm:w-64" : "w-56 sm:w-64"
+              } transition-all duration-300`}
             >
               <ProductCard product={product} />
             </div>
@@ -195,11 +265,11 @@ export const BestSellingProductCards = ({
           <>
             <button
               onClick={prevSlide}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 z-10 transition-colors duration-200"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 sm:p-3 shadow-lg hover:bg-gray-100 z-10 transition-colors duration-200"
               aria-label="Previous slide"
             >
               <svg
-                className="w-5 h-5"
+                className="w-4 h-4 sm:w-5 sm:h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -214,11 +284,11 @@ export const BestSellingProductCards = ({
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 z-10 transition-colors duration-200"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 sm:p-3 shadow-lg hover:bg-gray-100 z-10 transition-colors duration-200"
               aria-label="Next slide"
             >
               <svg
-                className="w-5 h-5"
+                className="w-4 h-4 sm:w-5 sm:h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

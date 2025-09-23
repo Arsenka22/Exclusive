@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useWishlist } from "../../contexts/wishlistContext";
 import { products } from "../../data/products";
+import { useCart } from "../../contexts/cartContext";
 
 
 interface ProductCardsProps {
@@ -12,6 +13,7 @@ interface ProductCardsProps {
 export const ProductCards = ({
   showAll = false,
 }: ProductCardsProps) => {
+  const { addToCart} = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist: checkIsInWishlist } = useWishlist();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(1);
@@ -117,17 +119,10 @@ export const ProductCards = ({
 
   const ProductCard =  ({ product }: { product: (typeof products)[0] }) => {
     const [isHovered, setIsHovered] = useState(false);
-    const [isToCartClicked, setIsToCartClicked] = useState(false);
+    const [isToCartClicked] = useState(false);
     const [isToWishlistClicked, setIsToWishlistClicked] = useState(false);
     
     const isInWishlist = checkIsInWishlist(product.id);
-
-    const handleToCartClick = () => {
-      setIsToCartClicked(true);
-      setTimeout(() => {
-        setIsToCartClicked(false);
-      }, 2000);
-    };
 
     const handleWishlistClick = () => {
       if (isInWishlist) {
@@ -155,7 +150,6 @@ export const ProductCards = ({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Иконка вишлиста в углу */}
         <button
           onClick={handleWishlistClick}
           className="absolute top-2 right-2 z-10 p-1 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors"
@@ -198,7 +192,7 @@ export const ProductCards = ({
           <div className="absolute flex flex-col gap-2 bottom-0 left-0 right-0 p-2 sm:p-3 bg-white">
             <button
               className="bg-black flex items-center justify-center w-full h-[30px] text-white px-2 py-1 sm:px-3 sm:py-2 rounded text-sm sm:text-base hover:bg-gray-800 transition-colors"
-              onClick={handleToCartClick}
+              onClick={() => addToCart({...product, quantity: 1})}
             >
               Add to cart
             </button>

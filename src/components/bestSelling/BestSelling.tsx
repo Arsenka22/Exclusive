@@ -19,17 +19,19 @@ export const BestSelling = () => {
         <span className="text-red-500">This Month</span>
       </div>
       <div className="flex justify-between w-full items-center mt-6 ">
-        <span className="text-[36px] font-bold text-black ">Best Selling Products</span>
+        <span className="text-[36px] font-bold text-black ">
+          Best Selling Products
+        </span>
         <div className="flex bnt-container flex gap-4">
           {!showAll ? (
-            <button 
+            <button
               onClick={handleShowAll}
               className="flex justify-center items-center font-bold cursor-pointer w-[159px] h-[56px] text-white bg-red-500"
             >
               View all
             </button>
           ) : (
-            <button 
+            <button
               onClick={handleShowLess}
               className="flex justify-center items-center font-bold cursor-pointer w-[159px] h-[56px] text-white bg-gray-600"
             >
@@ -38,10 +40,10 @@ export const BestSelling = () => {
           )}
         </div>
       </div>
-      <BestSellingProductCards 
-        showAll={showAll} 
-        onShowAll={handleShowAll} 
-        onShowLess={handleShowLess} 
+      <BestSellingProductCards
+        showAll={showAll}
+        handleShowAll={handleShowAll}
+        handleShowLess={handleShowLess}
       />
     </div>
   );

@@ -91,9 +91,11 @@ export const HeaderView = () => {
             <img src={WishList} alt="WishList" className="w-6 h-6 lg:w-auto lg:h-auto" />
           </button>
           </Link>
+          <Link to="/cart" onClick={HandleOnclick}>
           <button className="cursor-pointer p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <img src={Cart} alt="Cart" className="w-6 h-6 lg:w-auto lg:h-auto" />
           </button>
+          </Link>
         </div>
       </div>
     </header>
