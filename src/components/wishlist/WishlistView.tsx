@@ -131,7 +131,7 @@ export const Wishlist = () => {
               className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
             >
               <div className="relative">
-                <img src={product.image} className="w-full h-48 object-cover" />
+                <img src={product.image} className="w-full h-48 object-fit" />
                 <button
                   onClick={() => removeFromWishlist(product.id)}
                   className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-red-500 hover:text-white transition-colors duration-200"
