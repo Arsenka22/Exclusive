@@ -7,7 +7,9 @@ export const BrowseByCategories = () => {
         <span className="text-red-500">Categories</span>
       </div>
       <div className="flex justify-between w-full items-center mt-6 ">
-        <span className="text-[36px] font-bold text-black ">Browse By Category</span>
+        <span className="text-[36px] font-bold text-black ">
+          Browse By Category
+        </span>
         <div className="bnt-container flex gap-4">
           <button className="text-red-500 font-bold cursor-pointer ">
             Prev

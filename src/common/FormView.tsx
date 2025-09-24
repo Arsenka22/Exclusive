@@ -31,7 +31,7 @@ export const FormView = ({
 
     setTimeout(() => {
       setSubmitted(false);
-      handleReset(); 
+      handleReset();
     }, 1000);
   };
 

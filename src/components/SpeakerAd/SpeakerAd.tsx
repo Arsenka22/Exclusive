@@ -15,7 +15,10 @@ export const SpeakerAd = () => {
         <BuyNowBtn />
       </div>
       <div className=" flex justify-center items-center">
-        <img src={speaker} className=" flex justify-center items-center w-[600px] h-[400px]"></img>
+        <img
+          src={speaker}
+          className=" flex justify-center items-center w-[600px] h-[400px]"
+        ></img>
       </div>
     </div>
   );

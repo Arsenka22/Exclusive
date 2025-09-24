@@ -14,16 +14,16 @@ export const LoginFormController = () => {
 
   const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
     try {
-    e.preventDefault();
-    const response = await login(formData.email, formData.password);
-    console.log(response);
-    console.log("Login data:", formData);
-    if (response) {
-      navigate("/");
+      e.preventDefault();
+      const response = await login(formData.email, formData.password);
+      console.log(response);
+      console.log("Login data:", formData);
+      if (response) {
+        navigate("/");
+      }
+    } catch (error) {
+      alert("Ошибка авторизации! Проверьте введенные данные.");
     }
-  } catch (error) {
-    alert("Ошибка авторизации! Проверьте введенные данные.");
-  }
   };
 
   const handleReset = () => {

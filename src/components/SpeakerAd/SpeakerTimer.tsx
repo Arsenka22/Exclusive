@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export const SpeakerTimer = () => {
-  const [seconds, setSeconds] = useState(5);
+  const [seconds, setSeconds] = useState(58);
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
   const [days, setDays] = useState(0);
@@ -62,19 +62,23 @@ export const SpeakerTimer = () => {
             <span className="text-lg font-semibold leading-none">{days}</span>
             <span className="text-xs text-gray-600 mt-1">days</span>
           </div>
-          
+
           <div className="flex flex-col items-center justify-center rounded-full p-2 bg-white w-[62px] h-[62px]">
             <span className="text-lg font-semibold leading-none">{hours}</span>
             <span className="text-xs text-gray-600 mt-1">hours</span>
           </div>
-          
+
           <div className="flex flex-col items-center justify-center rounded-full p-2 bg-white w-[62px] h-[62px]">
-            <span className="text-lg font-semibold leading-none">{minutes}</span>
+            <span className="text-lg font-semibold leading-none">
+              {minutes}
+            </span>
             <span className="text-xs text-gray-600 mt-1">minutes</span>
           </div>
-          
+
           <div className="flex flex-col items-center justify-center rounded-full p-2 bg-white w-[62px] h-[62px]">
-            <span className="text-lg font-semibold leading-none">{seconds}</span>
+            <span className="text-lg font-semibold leading-none">
+              {seconds}
+            </span>
             <span className="text-xs text-gray-600 mt-1">seconds</span>
           </div>
         </>

@@ -63,27 +63,31 @@ export const LoginForm = ({
             Forgot password?
           </button>
         </div>
-        
+
         <button className="flex justify-center items-center cursor-pointer w-[420px] h-[56px] bg-red-600 rounded-[8px] mt-[20px] text-white">
           Log In
         </button>
-        
-        <button 
+
+        <button
           type="button"
           className="flex justify-center items-center cursor-pointer w-[420px] h-[56px] bg-[#F3F3F3] rounded-[8px] mt-[20px]"
         >
           <div className="btn-container flex justify-between items-center gap-2">
-            <img src={signupwithgoogle} alt="loginwithgoogle" className="w-[24px] h-[24px]"></img>
+            <img
+              src={signupwithgoogle}
+              alt="loginwithgoogle"
+              className="w-[24px] h-[24px]"
+            ></img>
             <span>Log In with Google</span>
           </div>
         </button>
         <Link to="/signup">
-        <div className="flex justify-center items-center mt-[20px] gap-2">
-          <span>Don't have an account?</span>
-          <button type="button" className="underline" onClick={handleReset}>
-            Sign Up
-          </button>
-        </div>
+          <div className="flex justify-center items-center mt-[20px] gap-2">
+            <span>Don't have an account?</span>
+            <button type="button" className="underline" onClick={handleReset}>
+              Sign Up
+            </button>
+          </div>
         </Link>
       </form>
     </div>

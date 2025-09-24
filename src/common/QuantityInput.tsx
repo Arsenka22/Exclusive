@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 interface QuantityInputProps {
   initialValue?: number;
@@ -7,7 +7,12 @@ interface QuantityInputProps {
   onChange?: (quantity: number) => void;
 }
 
-export const QuantityInput = ({ initialValue = 1, min = 1, max = 99, onChange}: QuantityInputProps) => {
+export const QuantityInput = ({
+  initialValue = 1,
+  min = 1,
+  max = 99,
+  onChange,
+}: QuantityInputProps) => {
   const [quantity, setQuantity] = useState(initialValue);
 
   const handleDecrease = () => {
@@ -35,8 +40,8 @@ export const QuantityInput = ({ initialValue = 1, min = 1, max = 99, onChange}: 
 
   return (
     <div className="quantity-input">
-      <button 
-        type="button" 
+      <button
+        type="button"
         onClick={handleDecrease}
         disabled={quantity <= min}
         className="quantity-btn"
@@ -51,8 +56,8 @@ export const QuantityInput = ({ initialValue = 1, min = 1, max = 99, onChange}: 
         onChange={handleInputChange}
         className="quantity-field"
       />
-      <button 
-        type="button" 
+      <button
+        type="button"
         onClick={handleIncrease}
         disabled={quantity >= max}
         className="quantity-btn"
@@ -62,4 +67,3 @@ export const QuantityInput = ({ initialValue = 1, min = 1, max = 99, onChange}: 
     </div>
   );
 };
-

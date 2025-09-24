@@ -1,9 +1,9 @@
 import { HeaderView } from "../components/Header/HeaderView";
 import { SaleNotification } from "../components/SaleNotification";
-import { FooterView } from "../components/footer/FooterView";
-import { SignUpFormController } from "../components/SignUp/SignUpFormController";
+import { FooterView } from "../components/Footer/FooterView";
+import { LoginFormController } from "../components/Login/LoginFormController";
 
-export const SignupPage = () => {
+export const LoginPage = () => {
   return (
     <>
       <header>
@@ -11,7 +11,7 @@ export const SignupPage = () => {
         <HeaderView />
       </header>
       <main className="max-w-[1170px] mx-auto">
-        <SignUpFormController />
+        <LoginFormController />
       </main>
       <footer>
         <FooterView />

@@ -40,9 +40,11 @@ export const Cart = () => {
     );
   }
 
-  // Calculate totals
-  const subtotal = cart.reduce((total, product) => total + (product.price * product.quantity), 0);
-  const shipping = subtotal > 100 ? 0 : 10; // Free shipping over $100
+  const subtotal = cart.reduce(
+    (total, product) => total + product.price * product.quantity,
+    0
+  );
+  const shipping = subtotal > 100 ? 0 : 10;
   const total = subtotal + shipping;
 
   return (
@@ -65,7 +67,6 @@ export const Cart = () => {
           </Link>
         </div>
 
-        {/* Заголовок таблицы */}
         <div className="grid grid-cols-4 gap-6 font-semibold text-gray-700 border-b pb-2 mb-4 text-left">
           <div>Product</div>
           <div>Price</div>
@@ -73,14 +74,12 @@ export const Cart = () => {
           <div>Subtotal</div>
         </div>
 
-        {/* Элементы корзины */}
         <div className="flex flex-col gap-6">
           {cart.map((product) => (
             <div
               key={product.id}
               className="grid grid-cols-4 gap-6 items-center border-b pb-4"
             >
-              {/* Product */}
               <div className="flex items-center gap-4 relative">
                 <img
                   src={product.image}
@@ -109,12 +108,10 @@ export const Cart = () => {
                 </button>
               </div>
 
-              {/* Price */}
               <div className="font-semibold text-gray-900">
                 ${product.price.toFixed(2)}
               </div>
 
-              {/* Quantity */}
               <div>
                 <input
                   type="number"
@@ -126,16 +123,12 @@ export const Cart = () => {
                   className="w-16 border rounded px-2 py-1 text-center"
                 />
               </div>
-
-              {/* Subtotal */}
               <div className="font-semibold text-gray-900">
                 ${(product.price * product.quantity).toFixed(2)}
               </div>
             </div>
           ))}
         </div>
-
-        {/* Очистить корзину */}
         {cart.length > 0 && (
           <div className="mt-8 text-center">
             <button
@@ -155,32 +148,35 @@ export const Cart = () => {
           </div>
         )}
 
-        {/* Cart Total Block */}
         <div className="mt-12 max-w-md ml-auto">
           <div className="bg-transparent border border-black rounded-lg p-6">
             <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
               Cart Total
             </h3>
-            
+
             <div className="space-y-4">
               <div className="flex justify-between items-center pb-4 border-b border-gray-300">
                 <span className="font-medium text-gray-700">SubTotal</span>
-                <span className="font-semibold text-gray-900">${subtotal.toFixed(2)}</span>
+                <span className="font-semibold text-gray-900">
+                  ${subtotal.toFixed(2)}
+                </span>
               </div>
-              
+
               <div className="flex justify-between items-center pb-4 border-b border-gray-300">
                 <span className="font-medium text-gray-700">Shipping</span>
                 <span className="font-semibold text-gray-900">
-                  {shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}
+                  {shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`}
                 </span>
               </div>
-              
+
               <div className="flex justify-between items-center pb-4">
                 <span className="font-bold text-gray-900 text-lg">Total</span>
-                <span className="font-bold text-gray-900 text-lg">${total.toFixed(2)}</span>
+                <span className="font-bold text-gray-900 text-lg">
+                  ${total.toFixed(2)}
+                </span>
               </div>
             </div>
-            
+
             <button className="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors duration-200 font-semibold mt-6">
               Proceed to Checkout
             </button>

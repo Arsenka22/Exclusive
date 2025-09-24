@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 interface ProductCarouselProps {
   images: string[];
@@ -37,7 +37,9 @@ export const ProductCarousel = ({ images }: ProductCarouselProps) => {
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-500 ${
-              index === currentIndex ? 'opacity-100' : 'opacity-0 pointer-events-none'
+              index === currentIndex
+                ? "opacity-100"
+                : "opacity-0 pointer-events-none"
             }`}
           >
             <img
@@ -54,8 +56,19 @@ export const ProductCarousel = ({ images }: ProductCarouselProps) => {
         className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md transition-all"
         aria-label="Previous image"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
         </svg>
       </button>
       <button
@@ -63,8 +76,19 @@ export const ProductCarousel = ({ images }: ProductCarouselProps) => {
         className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md transition-all"
         aria-label="Next image"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5l7 7-7 7"
+          />
         </svg>
       </button>
 
@@ -78,17 +102,16 @@ export const ProductCarousel = ({ images }: ProductCarouselProps) => {
               rounded-full // Это ключевое свойство для круга
               border-2 border-white
               transition-all duration-300
-              ${index === currentIndex 
-                ? 'bg-red-500 scale-125 border-red-500' 
-                : 'bg-white/50 hover:bg-white/80 border-transparent'
+              ${
+                index === currentIndex
+                  ? "bg-red-500 scale-125 border-red-500"
+                  : "bg-white/50 hover:bg-white/80 border-transparent"
               }
             `}
             aria-label={`Go to image ${index + 1}`}
           />
         ))}
       </div>
-
-     
     </div>
   );
 };

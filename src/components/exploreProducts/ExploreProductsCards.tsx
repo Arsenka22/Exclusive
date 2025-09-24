@@ -180,7 +180,7 @@ export const ExploreOurProductsCards = ({
         <img
           src={product.image}
           alt={product.title}
-          className="w-full h-40 sm:h-48 object-cover transition-transform duration-300"
+          className="w-full h-40 sm:h-48 object-fit transition-transform duration-300"
         />
 
         <div className="product-info flex flex-col gap-1 sm:gap-2 items-start p-2 sm:p-3">

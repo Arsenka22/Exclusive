@@ -2,14 +2,14 @@ import { SaleNotification } from "../components/SaleNotification";
 import { HeaderView } from "../components/Header/HeaderView";
 import { CategoriesView } from "../components/Categories/CategoriesView";
 import { CarouselView } from "../components/Carrousel/CarouselView";
-import { FlashSales } from "../components/today/FlashSales";
+import { FlashSales } from "../components/Today/FlashSales";
 import { BrowseByCategories } from "../components/BrowseByCategories/BrowseByCat";
-import { BestSelling } from "../components/bestSelling/BestSelling";
+import { BestSelling } from "../components/BestSelling/BestSelling";
 import { SpeakerAd } from "../components/SpeakerAd/SpeakerAd";
-import { ExploreOurProducts } from "../components/exploreProducts/ExploreOurProducts";
-import { NewArrival } from "../components/newArrivals/NewArrival";
-import { Benefits } from "../components/benefits/Benefits";
-import { FooterView } from "../components/footer/FooterView";
+import { ExploreOurProducts } from "../components/ExploreProducts/ExploreOurProducts";
+import { NewArrival } from "../components/NewArrivals/NewArrival";
+import { Benefits } from "../components/Benefits/Benefits";
+import { FooterView } from "../components/Footer/FooterView";
 
 export const HomePage = () => {
   return (

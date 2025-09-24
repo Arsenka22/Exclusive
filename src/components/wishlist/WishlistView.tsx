@@ -1,5 +1,5 @@
-import { useWishlist } from '../../contexts/wishlistContext';
-import { Link } from 'react-router-dom';
+import { useWishlist } from "../../contexts/wishlistContext";
+import { Link } from "react-router-dom";
 
 export const Wishlist = () => {
   const { wishlist, removeFromWishlist } = useWishlist();
@@ -61,14 +61,16 @@ export const Wishlist = () => {
     return (
       <div className="flex items-center">
         {stars}
-        <span className="ml-1 text-xs sm:text-sm text-gray-600">({rating})</span>
+        <span className="ml-1 text-xs sm:text-sm text-gray-600">
+          ({rating})
+        </span>
       </div>
     );
   };
 
   if (wishlist.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+      <div className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-md">
           <div className="mb-6">
             <svg
@@ -85,7 +87,9 @@ export const Wishlist = () => {
               />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Your wishlist is empty</h1>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+            Your wishlist is empty
+          </h1>
           <p className="text-gray-600 mb-6">
             Save your favorite items here to easily find them later.
           </p>
@@ -101,19 +105,20 @@ export const Wishlist = () => {
   }
 
   return (
-    
     <div className="min-h-screen py-8">
       <div className="container mx-auto ">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">My Wishlist</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+              My Wishlist
+            </h1>
             <p className="text-gray-600 mt-2">
-              {wishlist.length} {wishlist.length === 1 ? 'item' : 'items'}
+              {wishlist.length} {wishlist.length === 1 ? "item" : "items"}
             </p>
           </div>
           <Link
             to="/"
-            className="text-blue-600 hover:text-blue-800 font-medium"
+            className="bg-transparent flex items-center gap-2 h-[50px] border-2 border-gray-900 text-black px-4 py-2 rounded hover:bg-gray-900 hover:text-white transition-colors duration-200"
           >
             Continue Shopping
           </Link>
@@ -126,10 +131,7 @@ export const Wishlist = () => {
               className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
             >
               <div className="relative">
-                <img
-                  src={product.image}
-                  className="w-full h-48 object-cover"
-                />
+                <img src={product.image} className="w-full h-48 object-cover" />
                 <button
                   onClick={() => removeFromWishlist(product.id)}
                   className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-red-500 hover:text-white transition-colors duration-200"
@@ -155,9 +157,11 @@ export const Wishlist = () => {
                 <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
                   {product.title}
                 </h3>
-                
+
                 <div className="flex items-center justify-between mb-3">
-                  <p className="text-lg font-bold text-red-500">${product.price}</p>
+                  <p className="text-lg font-bold text-red-500">
+                    ${product.price}
+                  </p>
                   {renderRatingStars(product.rate)}
                 </div>
 
@@ -192,13 +196,17 @@ export const Wishlist = () => {
 
         {wishlist.length > 0 && (
           <div className="mt-8 text-center">
-            <button 
+            <button
               onClick={() => {
-                if (window.confirm('Are you sure you want to clear your entire wishlist?')) {
-                  wishlist.forEach(product => removeFromWishlist(product.id));
+                if (
+                  window.confirm(
+                    "Are you sure you want to clear your entire wishlist?"
+                  )
+                ) {
+                  wishlist.forEach((product) => removeFromWishlist(product.id));
                 }
               }}
-              className="bg-red-600 text-white py-2 px-4 rounded "
+              className="bg-red-600 h-[50px] text-white px-4 py-2 rounded hover:bg-red-700 transition-colors duration-200 "
             >
               Clear All Items
             </button>

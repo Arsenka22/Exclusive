@@ -2,6 +2,7 @@ import { Personalities } from "../../data/personalitiesCards";
 import facebookicon from "../../assets/facebookicon.svg";
 import twittericon from "../../assets/twittericon.svg";
 import instagramicon from "../../assets/insticon.svg";
+import customer from "../../assets/customer.png";
 
 export const PersonalitiesCards = ({
   person,

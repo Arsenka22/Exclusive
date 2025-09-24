@@ -6,9 +6,10 @@
 .carousel-indicator {
   border-radius: 50% !important;
 }
+
 * {
   box-sizing: border-box;
-  
+
 }
 
 @layer utilities {

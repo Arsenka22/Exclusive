@@ -70,8 +70,6 @@ export const SaleTimer = () => {
           <p className="text-[32px] font-bold">{seconds}</p>
         </span>
       </div>
-     
     </div>
-    
   );
 };

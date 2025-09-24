@@ -1,4 +1,4 @@
-import { ExploreOurProductsCards } from "../../components/exploreProducts/ExploreProductsCards";
+import { ExploreOurProductsCards } from "./ExploreProductsCards";
 import { useState } from "react";
 
 export const ExploreOurProducts = () => {

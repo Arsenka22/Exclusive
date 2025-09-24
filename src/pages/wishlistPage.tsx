@@ -1,7 +1,7 @@
 import { SaleNotification } from "../components/SaleNotification";
 import { HeaderView } from "../components/Header/HeaderView";
-import { Wishlist } from "../components/wishlist/WishlistView";
-import { FooterView } from "../components/footer/FooterView";
+import { Wishlist } from "../components/Wishlist/WishlistView";
+import { FooterView } from "../components/Footer/FooterView";
 
 export const WishlistPage = () => {
   return (
@@ -17,4 +17,3 @@ export const WishlistPage = () => {
     </>
   );
 };
-

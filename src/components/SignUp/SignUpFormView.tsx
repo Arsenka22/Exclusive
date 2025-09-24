@@ -66,20 +66,24 @@ export const SignUpForm = ({
           Create account
         </button>
         <button className="flex justify-center items-center cursor-pointer w-[420px] h-[56px] bg-[#F3F3F3] rounded-[8px] mt-[20px]">
-            <div className="btn-container flex justufy-between items-center gap-2">
-            <img src={signupwithgoogle} alt="signupwithgoogle" className="w-[24px] h-[24px]"></img>
+          <div className="btn-container flex justufy-between items-center gap-2">
+            <img
+              src={signupwithgoogle}
+              alt="signupwithgoogle"
+              className="w-[24px] h-[24px]"
+            ></img>
             <span>Sign Up with Google</span>
-            </div>
+          </div>
         </button>
         <div className="flex justify-center items-center mt-[20px] gap-2">
           <span>Already have an account?</span>
           <Link to="/login">
-          <button className="underline" onClick={handleReset}>
-            Log In
-          </button>
+            <button className="underline" onClick={handleReset}>
+              Log In
+            </button>
           </Link>
         </div>
       </form>
-      </div>
+    </div>
   );
 };

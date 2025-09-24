@@ -1,12 +1,12 @@
 import { HeaderView } from "../components/Header/HeaderView";
 import { SaleNotification } from "../components/SaleNotification";
-import { FooterView } from "../components/footer/FooterView";
+import { FooterView } from "../components/Footer/FooterView";
 import storyphoto from "../assets/pstoryphoto.png";
 import { useState } from "react";
 import { achievementsCards } from "../data/achievementsCards";
-import { PersonalitiesCards } from "../components/persCards/PersonalitiesCards";
+import { PersonalitiesCards } from "../components/PersCards/PersonalitiesCards";
 import { Personalities } from "../data/personalitiesCards";
-import { Benefits } from "../components/benefits/Benefits";
+import { Benefits } from "../components/Benefits/Benefits";
 
 export const AboutPage = () => {
   const Achievments = ({
@@ -17,6 +17,7 @@ export const AboutPage = () => {
     const [isHovered, setIsHovered] = useState(false);
     const handleMouseEnter = () => setIsHovered(true);
     const handleMouseLeave = () => setIsHovered(false);
+
     return (
       <div
         className={`flex max-w-[270px] h-[230px] justify-center rounded-[4px] border-1 border-[#000000] px-[30px] py-[50px] ${
@@ -26,10 +27,20 @@ export const AboutPage = () => {
         onMouseLeave={handleMouseLeave}
       >
         <div className="flex flex-col max-w-[169px] w-full h-[170px] gap-6 items-center justify-end">
-          {/* <img src={sellerEl} className="w-[60px] h-[60px]">
-          <img src={sallers}></></img> */}
-          <span className="font-bold text-[20px] text-center">{achievement.amount}</span>
-          <span className="text-[16px] text-center">{achievement.description}</span>
+          {/* Добавляем белый фон для изображения при ховере */}
+          <div className={`p-2 rounded-full ${isHovered ? "bg-white" : ""}`}>
+            <img
+              src={achievement.image}
+              className="w-[50px] h-[50px]"
+              alt={achievement.description}
+            />
+          </div>
+          <span className="font-bold text-[20px] text-center">
+            {achievement.amount}
+          </span>
+          <span className="text-[16px] text-center">
+            {achievement.description}
+          </span>
         </div>
       </div>
     );
@@ -46,7 +57,7 @@ export const AboutPage = () => {
           <div className="w-[509px] flex flex-col gap-15 items-start">
             <h3 className="font-bold text-[54px] text-black">Our Story</h3>
             <p className="text-[16px]">
-              Launced in 2015, Exclusive is South Asia’s premier online shopping
+              Launced in 2015, Exclusive is South Asia's premier online shopping
               makterplace with an active presense in Bangladesh. Supported by
               wide range of tailored marketing, data and service solutions,
               Exclusive has 10,500 sallers and 300 brands and serves 3 millioons
@@ -59,7 +70,11 @@ export const AboutPage = () => {
             </p>
           </div>
           <div>
-            <img src={storyphoto} className="w-[607px] h-[609px]"></img>
+            <img
+              src={storyphoto}
+              className="w-[607px] h-[609px]"
+              alt="Our Story"
+            />
           </div>
         </div>
         <div className="achievements-cards flex justify-between items-center flex-wrap gap-[30px] mt-[100px] mb-[100px]">
