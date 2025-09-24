@@ -1,4 +1,3 @@
-import customer from "../assets/customer.png";
 
 export const achievementsCards = [
   {

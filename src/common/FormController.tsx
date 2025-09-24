@@ -14,24 +14,28 @@ export const FormController = () => {
     const key = e.currentTarget.name;
     setFormData({ ...FormData, [key]: e.currentTarget.value });
   };
+  
   const onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const key = e.currentTarget.name;
     setFormData({ ...FormData, [key]: e.currentTarget.value });
   };
-  const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
+  
+  const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = sendMail(
+      await sendMail(
         FormData.username,
         FormData.email,
         FormData.tel,
         FormData.message
       );
       alert("Сообщение отправлено!");
+      handleReset();
     } catch (error) {
       alert("Ошибка отправки! Проверьте введенные данные.");
     }
   };
+  
   const handleReset = () => {
     setFormData({ username: "", email: "", tel: "", message: "" });
   };

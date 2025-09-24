@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { HomePage } from "./pages/HomePage";
+import { HomePage } from "./pages/homePage";
 import { ContactPage } from "./pages/contact";
-import { AboutPage } from "./pages/AboutPage";
+import { AboutPage } from "./pages/aboutPage";
 import { WishlistProvider } from "./contexts/wishlistContext";
 import { WishlistPage } from "./pages/wishlistPage";
 import { CartPage } from "./pages/cartpage";
-import { SignupPage } from "./pages/SignupPage";
-import { LoginPage } from "./pages/LoginPage";
+import { SignupPage } from "./pages/signupPage";
+import { LoginPage } from "./pages/loginPage";
 import { CartContextProvider } from "./contexts/cartContext";
-import { ActivationPage } from "./pages/ActivationPage";
+import { ActivationPage } from "./pages/activationPage";
 export const App = () => {
   return (
     <CartContextProvider>
